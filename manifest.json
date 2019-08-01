@@ -1,0 +1,29 @@
+{
+  "description": "Lembrete do SISREF - Sistema Eletrônico de Registro de Frequência",
+  "homepage_url": "https://www.google.com",
+  "manifest_version": 2,
+  "name": "Lembrete SISREF",
+  "author": "Pedro Santos Guimarães",
+  "permissions": [
+    "alarms",
+    "activeTab",
+    "tabs"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["showbox.js"]
+    }
+  ],
+  "browser_action": {
+    "default_icon": {
+      "32": "icons/icone.png",
+      "64": "icons/icone.png",
+      "128": "icons/icone.png"
+    }
+  },
+  "version": "1.0"
+}
