@@ -36,7 +36,7 @@ function sendMessageToTabs(tabs) {
   for (let tab of tabs) {
     browser.tabs.sendMessage(
       tab.id,
-      {greeting: "Hi from background script"}
+      {greeting: "Hi from Firefox background script"}
     ).then(response => {
       console.log("Message from the content script:");
       console.log(response.response);
@@ -47,8 +47,9 @@ function sendMessageToTabs(tabs) {
 browser.browserAction.onClicked.addListener(() => {
   if (isChrome) {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
-      console.log(response.farewell);
+      chrome.tabs.sendMessage(tabs[0].id, {greeting: "Hi, background from Chrome here"}, function(response) {
+      //console.log(response.farewell);
+      console.log(arguments);
       });
     });
   } else {
@@ -58,3 +59,11 @@ browser.browserAction.onClicked.addListener(() => {
     }).then(sendMessageToTabs).catch(onError);
   }
 });
+
+/*browser.browserAction.onClicked.addListener(() => {
+  var creating = browser.windows.create({
+    url: ["https://developer.mozilla.org",
+          "https://addons.mozilla.org"]
+  });
+  creating.then(onCreated, onError);
+});*/
