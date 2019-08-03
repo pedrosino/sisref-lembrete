@@ -1,33 +1,34 @@
 "use strict";
 
-/*
-  function checkTime() {
+// Check if using Chrome or not
+const isChrome = typeof browser === "undefined";
+if (isChrome) { var browser = chrome; };
+var message = "";
+
+function checkTime() {
   let date = new Date();
+  let hour = date.getHours();
   let minutes = date.getMinutes();
+  message = hour + ":" + minutes + " -> ";
   // Check if minutes are even or odd
   if (minutes % 2 == 0) {
-    var message = "even";
-    //console.log("even");
+    message += "even";
   } else {
-    var message = "odd";
-    //console.log("odd");
+    message += "odd";
   }
 
-  browser.tabs.sendMessage(tabs[0].id, {replacement: message});
+  console.log(message);
+  browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    sendMessageToTabs(tabs);
+  });
 }
 
 // On start up, check the time to see what theme to show.
 checkTime();
-*/
-// Check if using Chrome or not
-const isChrome = typeof browser === "undefined";
-if (isChrome) { var browser = chrome; }
-
-var message;
 
 // Set up an alarm to check this regularly.
-///browser.alarms.onAlarm.addListener(checkTime);
-///browser.alarms.create('checkTime', {periodInMinutes: 3});
+browser.alarms.onAlarm.addListener(checkTime);
+browser.alarms.create('checkTime', {periodInMinutes: 1});
 
 
 function onError(error) {
@@ -46,9 +47,10 @@ function sendMessageToTabs(tabs) {
   }
 }
 
-browser.browserAction.onClicked.addListener(() => {
+/*browser.browserAction.onClicked.addListener(() => {
   message = isChrome ? "This is Chrome" : "Firefox here";
+  message += " at " + new Date();
   browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
     sendMessageToTabs(tabs);
   });
-});
+});*/

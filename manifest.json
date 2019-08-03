@@ -10,12 +10,18 @@
     "tabs"
   ],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "dialog-polyfill.js",
+      "background.js"]
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["showbox.js"]
+      "js": [
+        "dialog-polyfill.js",
+        "showbox.js"],
+      "css": [
+        "styles.css"]
     }
   ],
   "browser_action": {
