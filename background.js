@@ -23,6 +23,8 @@ checkTime();
 const isChrome = typeof browser === "undefined";
 if (isChrome) { var browser = chrome; }
 
+var message;
+
 // Set up an alarm to check this regularly.
 ///browser.alarms.onAlarm.addListener(checkTime);
 ///browser.alarms.create('checkTime', {periodInMinutes: 3});
@@ -36,7 +38,7 @@ function sendMessageToTabs(tabs) {
   for (let tab of tabs) {
     browser.tabs.sendMessage(
       tab.id,
-      {greeting: "Hi from Firefox background script"}
+      {greeting: message}
     ).then(response => {
       console.log("Message from the content script:");
       console.log(response.response);
@@ -45,25 +47,8 @@ function sendMessageToTabs(tabs) {
 }
 
 browser.browserAction.onClicked.addListener(() => {
-  if (isChrome) {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {greeting: "Hi, background from Chrome here"}, function(response) {
-      //console.log(response.farewell);
-      console.log(arguments);
-      });
-    });
-  } else {
-    browser.tabs.query({
-      currentWindow: true,
-      active: true
-    }).then(sendMessageToTabs).catch(onError);
-  }
-});
-
-/*browser.browserAction.onClicked.addListener(() => {
-  var creating = browser.windows.create({
-    url: ["https://developer.mozilla.org",
-          "https://addons.mozilla.org"]
+  message = isChrome ? "This is Chrome" : "Firefox here";
+  browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    sendMessageToTabs(tabs);
   });
-  creating.then(onCreated, onError);
-});*/
+});
