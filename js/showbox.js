@@ -16,9 +16,11 @@ browser.runtime.onMessage.addListener(request => {
   div.textContent = request.greeting;
   var button = document.createElement('button');
   button.setAttribute('id','cancel');
+  button.setAttribute('class', 'ok');
   button.innerHTML = 'Close';
   div.appendChild(button);
-  document.body.appendChild(div);
+  //document.body.appendChild(div);
+  document.body.prepend(div);
 
   //var updateButton = document.getElementById('updateDetails');
   var cancelButton = document.getElementById('cancel');

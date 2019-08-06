@@ -1,0 +1,85 @@
+.alarme {
+  height: 300px;
+  width: 300px;
+  background-color: #12f;
+  border: 3px solid #aaf;
+  text-align: center;
+  font-family: Verdana, Arial;
+  font-size: 12pt;
+  color: #ddd;
+}
+
+button.ok {
+  background-color: #333;
+  border: 2px solid #666;
+  border-radius: 10px;
+  font-size: 15pt;
+  color: white;
+  margin: 10px auto 10px auto;
+}
+
+button.cancelar {
+  background-color: #fd0;
+  border: 2px solid #850;
+  border-radius: 5px;
+  font-size: 12pt;
+  color: black;
+}
+
+.popup {
+  background-color: #050;
+  width: 300px;
+  color: #ddd;
+  font-family: Verdana, Arial;
+  text-align: center;
+  padding: 5px;
+}
+
+.div-horario {
+  height: 30px;
+  display: block;
+  position: relative;
+}
+
+.direita {
+  text-align: right;
+  padding-right: 5px;
+  width: 60%;
+  display: block;
+  position: absolute;
+}
+
+.horario {
+  width: 50px;
+  color: black;
+  border-radius: 2px;
+  display: inline-block;
+  position: absolute;
+  left: 60%;
+}
+
+
+/*.input-icon{
+  display: inline-block;
+  position: relative;
+}
+
+.input {
+  padding: .8rem 1rem;
+  padding-right: 1rem;
+}
+
+.input.big{
+  height: 200px;
+}
+
+.icon {
+  padding: .4rem .6rem;
+  display: block;
+  border: 1px dashed black;
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  transform: translateY(-50%);
+}
+*/
