@@ -1,7 +1,7 @@
 .alarme {
   height: 300px;
   width: 300px;
-  background-color: #12f;
+  background: radial-gradient(#00f, #00a, #005);
   border: 3px solid #aaf;
   text-align: center;
   font-family: Verdana, Arial;
@@ -12,7 +12,7 @@
 button.ok {
   background-color: #333;
   border: 2px solid #666;
-  border-radius: 10px;
+  border-radius: 2px;
   font-size: 15pt;
   color: white;
   margin: 10px auto 10px auto;
