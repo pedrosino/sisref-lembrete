@@ -10,12 +10,14 @@
 }
 
 button.ok {
-  background-color: #333;
-  border: 2px solid #666;
-  border-radius: 2px;
-  font-size: 15pt;
+  background: radial-gradient(#00a, #008, #005);
+  border: 2px solid #05f;
+  line-height: 18pt;
+  border-radius: 4px;
+  font-size: 12pt;
   color: white;
   margin: 10px auto 10px auto;
+  display: block;
 }
 
 button.cancelar {

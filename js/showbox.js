@@ -7,11 +7,9 @@ if (isChrome) { var browser = chrome; }
 browser.runtime.onMessage.addListener(request => {
   console.log("Message from the background script:");
   console.log(request.greeting);
-  //alert(request.greeting);
-
 
   var div = document.createElement('dialog');
-  div.setAttribute('id', 'favDialog');
+  div.setAttribute('id', 'alarmeDialog');
   div.setAttribute('class', 'alarme');
   div.textContent = request.greeting;
   var button = document.createElement('button');
@@ -22,9 +20,8 @@ browser.runtime.onMessage.addListener(request => {
   //document.body.appendChild(div);
   document.body.prepend(div);
 
-  //var updateButton = document.getElementById('updateDetails');
   var cancelButton = document.getElementById('cancel');
-  var dialog = document.getElementById('favDialog');
+  var dialog = document.getElementById('alarmeDialog');
   dialog.returnValue = 'favAnimal';
 
   dialogPolyfill.registerDialog(dialog);
@@ -37,19 +34,13 @@ browser.runtime.onMessage.addListener(request => {
     }
   }
 
-  // Update button opens a modal dialog
-  //updateButton.addEventListener('click', function() {
-    dialog.showModal();
-  //  openCheck(dialog);
-  //});
+  dialog.showModal();
 
   // Form cancel button closes the dialog box
   cancelButton.addEventListener('click', function() {
     dialog.close('animalNotChosen');
     openCheck(dialog);
   });
-
-
 
   console.log("alertou!");
   return Promise.resolve({response: "Hi from content script"});
