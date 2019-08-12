@@ -1,5 +1,35 @@
-document.body.style.background = "#aabbcc";
-console.log("Cor foi pra #abc");
+function onError(error) {
+  console.log(`Error: ${error}`);
+}
+
+function onGot(item) {
+  var color = "#acf";
+  if (item.color) {
+    color = item.color;
+  }
+  //document.body.style.border = "10px solid " + color;
+  document.body.style.background = color;//"#acc";
+  console.log("Cor foi pra " + color);
+}
+
+var getting = browser.storage.local.get("color");
+getting.then(onGot, onError);
+
+//******************************************//
+
+function mostrar(item) {
+  var horario = "12:00";
+  if (item.inicio_intervalo) {
+    horario = item.inicio_intervalo;
+  }
+
+  console.log("Alarme do intervalo: " + horario);
+}
+
+var inicio_intervalo = browser.storage.local.get("inicio_intervalo");
+inicio_intervalo.then(mostrar, onError);
+
+//******************************************//
 
 //Busca texto da entrada
 entrada = $("#registros").find(":contains('ENTRADA')").next('p').text();

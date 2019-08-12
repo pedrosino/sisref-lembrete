@@ -4,12 +4,34 @@
 const isChrome = typeof browser === "undefined";
 if (isChrome) { var browser = chrome; };
 var message = "";
+var alarme1 = "12:00", alarme2 = "13:00", alarme3 = "17:00";
+
+function mostrar(item) {
+  if (item.inicio_intervalo) {
+    alarme1 = item.inicio_intervalo;
+  }
+
+  if (item.fim_intervalo) {
+    alarme2 = item.fim_intervalo;
+  }
+
+  if (item.saida) {
+    alarme3 = item.saida;
+  }
+  
+  message += "<br/>Alarme1: " + alarme1;
+  message += "\nAlarme2: " + alarme2;
+  message += "\nAlarme3: " + alarme3;
+  console.log("Alarme do intervalo: " + alarme1);
+  console.log("Alarme volta: " + alarme2);
+  console.log("Alarme saida: " + alarme3);
+}
 
 function checkTime() {
   let date = new Date();
   let hour = date.getHours();
   let minutes = date.getMinutes();
-  message = hour + ":" + minutes + " -> ";
+  message = "Agora: " + hour + ":" + minutes + " -> ";
   // Check if minutes are even or odd
   if (minutes % 2 == 0) {
     message += "even";
@@ -17,7 +39,10 @@ function checkTime() {
     message += "odd";
   }
 
-  console.log(message);
+  var itens = browser.storage.local.get();
+  itens.then(mostrar, onError);
+
+  console.log("Enviando: " + message);
   browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
     sendMessageToTabs(tabs);
   });

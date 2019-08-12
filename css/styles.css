@@ -29,12 +29,13 @@ button.cancelar {
 }
 
 .popup {
-  background-color: #050;
-  width: 300px;
+  background: linear-gradient(to bottom, #050, #030);
+  width: 320px;
   color: #ddd;
   font-family: Verdana, Arial;
   text-align: center;
-  padding: 5px;
+  padding: 10px;
+  margin: auto;
 }
 
 .div-horario {

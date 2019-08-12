@@ -9,13 +9,14 @@
 
   <body>
     <div class="popup simple-form">
+      <p style="font-weight: bold; font-size: 13pt; text-decoration: underline;">Lembrete SISREF</p>
       <p style="font-weight: bold;">Informe abaixo os horários para o lembrete</p>
       <form id="horarios" class="horarios">
         <div class="div-horario">
-          <span class="direita">Início do intervalo: </span><input id="inicio_intervalo" type="text" class="horario" />
+          <span class="direita">Início do intervalo: </span><input id="inicio" type="text" class="horario" />
         </div>
         <div class="div-horario">
-          <span class="direita">Fim do intervalo: </span><input id="fim_intervalo" type="text" class="horario" />
+          <span class="direita">Fim do intervalo: </span><input id="fim" type="text" class="horario" />
         </div>
         <div class="div-horario">
           <span class="direita">Saída: </span><input id="saida" type="text" class="horario" />
@@ -24,5 +25,7 @@
         <button class="btn btn-warning" id="cancelar">Cancelar</button>
       </form>
     </div>
+
+  <script src="js/salvar.js"></script>
   </body>
 </html>
