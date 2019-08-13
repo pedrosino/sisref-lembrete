@@ -39,7 +39,6 @@ browser.runtime.onMessage.addListener(request => {
   // Form cancel button closes the dialog box
   cancelButton.addEventListener('click', function() {
     dialog.close('fechou');
-    document.body.removeChild(div);
     openCheck(dialog);
   });
 

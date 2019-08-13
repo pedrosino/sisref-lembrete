@@ -7,22 +7,15 @@ if (isChrome) { var browser = chrome; }
 function saveOptions(e) {
   e.preventDefault();
   browser.storage.local.set({
-    inicio_intervalo: document.querySelector("#inicio").value
-  });
-
-  console.log("salvou 1");
-
-  browser.storage.local.set({
-    fim_intervalo: document.querySelector("#fim").value
-  });
-
-  console.log("salvou 2");
-
-  browser.storage.local.set({
+    inicio_intervalo: document.querySelector("#inicio").value,
+    fim_intervalo: document.querySelector("#fim").value,
     saida: document.querySelector("#saida").value
   });
 
-  console.log("salvou 3");
+  console.log("Salvo!");
+
+  let backgroundPage = browser.extension.getBackgroundPage();
+  backgroundPage.buscarAlarmes();
 
   window.close();
 }
