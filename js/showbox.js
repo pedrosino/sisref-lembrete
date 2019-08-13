@@ -17,8 +17,8 @@ browser.runtime.onMessage.addListener(request => {
   button.setAttribute('class', 'ok');
   button.innerHTML = 'Close';
   div.appendChild(button);
-  //document.body.appendChild(div);
-  document.body.prepend(div);
+  document.body.appendChild(div);
+  //document.body.prepend(div);
 
   var cancelButton = document.getElementById('cancel');
   var dialog = document.getElementById('alarmeDialog');
@@ -38,7 +38,7 @@ browser.runtime.onMessage.addListener(request => {
 
   // Form cancel button closes the dialog box
   cancelButton.addEventListener('click', function() {
-    dialog.close('animalNotChosen');
+    dialog.close('fechou');
     openCheck(dialog);
   });
 

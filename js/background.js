@@ -1,38 +1,57 @@
 "use strict";
 
-// Check if using Chrome or not
-const isChrome = typeof browser === "undefined";
-if (isChrome) { var browser = chrome; };
-var message = "";
+function buscarAlarmes() {
+  browser.storage.local.get().then(function(item) {
+    console.log('Buscando...');
+    if (item.inicio_intervalo) {
+      alarme1 = item.inicio_intervalo;
+    } else {
+      alarme1 = "12:00";
+    }
 
-function checkTime() {
-  let date = new Date();
-  let hour = date.getHours();
-  let minutes = date.getMinutes();
-  message = hour + ":" + minutes + " -> ";
-  // Check if minutes are even or odd
-  if (minutes % 2 == 0) {
-    message += "even";
-  } else {
-    message += "odd";
-  }
+    if (item.fim_intervalo) {
+      alarme2 = item.fim_intervalo;
+    } else {
+      alarme2 = "13:00";
+    }
 
-  console.log(message);
-  browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    sendMessageToTabs(tabs);
-  });
+    if (item.saida) {
+      alarme3 = item.saida;
+    } else {
+      alarme3 = "17:00";
+    }
+    
+    console.log(Math.random() + " Encontrei: " + alarme1 + ", " + alarme2 + ", " + alarme3);
+  }, onError);
 }
 
-// On start up, check the time to see what theme to show.
-checkTime();
+function verificaAlarme() {
+  buscarAlarmes();
+  console.log("Checando alarmes");
+  let date = new Date();
+  let hora = date.getHours();
+  let minutos = date.getMinutes();
+  var agora = hora*60 + minutos;
+  console.log(date + ": " + agora);
 
-// Set up an alarm to check this regularly.
-browser.alarms.onAlarm.addListener(checkTime);
-browser.alarms.create('checkTime', {periodInMinutes: 1});
+  var a1 = tempoParaMinutos(alarme1);
+  var a2 = tempoParaMinutos(alarme2);
+  var a3 = tempoParaMinutos(alarme3);
 
+  var d1 = agora - a1;
+  var d2 = agora - a2;
+  var d3 = agora - a3;
 
-function onError(error) {
-  console.error(`Error: ${error}`);
+  console.log("A1: " + a1 + " => diff " + d1);
+  console.log("A2: " + a2 + " => diff " + d2);
+  console.log("A3: " + a3 + " => diff " + d3);
+
+  if (d1 == 0 || d2 == 0 || d3 == 0) {
+    message = hora + ":" + minutos + "! Hora de acordar!";
+    browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      sendMessageToTabs(tabs);
+    });
+  }
 }
 
 function sendMessageToTabs(tabs) {
@@ -47,10 +66,18 @@ function sendMessageToTabs(tabs) {
   }
 }
 
-/*browser.browserAction.onClicked.addListener(() => {
-  message = isChrome ? "This is Chrome" : "Firefox here";
-  message += " at " + new Date();
-  browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    sendMessageToTabs(tabs);
-  });
-});*/
+//**************************************************************//
+// Check if using Chrome or not
+const isChrome = typeof browser === "undefined";
+if (isChrome) { var browser = chrome; };
+var message = "";
+var alarme1 = "", alarme2 = "", alarme3 = "";
+
+// No início, busca os valores dos alarmes
+console.log('começou');
+
+buscarAlarmes();
+
+// Set up an alarm to check this regularly.
+browser.alarms.onAlarm.addListener(verificaAlarme);
+browser.alarms.create('checkTime', {periodInMinutes: 1});
