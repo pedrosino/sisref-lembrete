@@ -1,8 +1,6 @@
 /***************** Caixa principal ********************/
 .alarme {
-  height: 300px;
   width: 320px;
-  
   background: linear-gradient(to bottom, #005, #008);
   border: 3px solid #002;
   border-radius: 4px;
@@ -14,16 +12,26 @@
   font-weight: bold;
 }
 
+.titulo {
+  font-weight: bold;
+  font-size: 13pt;
+  border-bottom: 2px solid #00a;
+  background-color: #003;
+  padding: 5px;
+  margin: -20px -20px 0 -20px;
+}
+
 /********************** Botões **********************/
 .botao {
   font-size: 12pt;
   cursor: pointer;
   display: inline-block;
-  margin: 2px;
+  margin: 1em;
   border: none;
   border-radius: 4px;
   padding: 4px 10px;
   font-weight: normal;
+  color: black;
 }
 
 .fechar {
@@ -38,13 +46,20 @@
   background-color: #28f;
 }
 
+.botaoLink:visited {
+  text-decoration: none;
+  color: black;
+}
+
 .botaoLink:hover {
   background-color: #06d;
+  text-decoration: none;
 }
+
+
 
 .salvar {
   background-color: #8bf;
-  color: black;
 }
 
 .salvar:hover {
@@ -62,11 +77,11 @@
 /***************** Popup dos horários ********************/
 .popup {
   background: linear-gradient(to bottom, #008, #005);
-  width: 320px;
+  width: 340px;
   color: #ededed;
   font-family: Verdana, Arial;
   text-align: center;
-  padding: 10px;
+  padding: 20px;
   margin: auto;
   border: 3px solid #030;
   border-radius: 4px;
@@ -93,4 +108,9 @@
   display: inline-block;
   position: absolute;
   left: 60%;
+}
+
+.popup input {
+  background-color: #008;
+  color: #ededed;
 }

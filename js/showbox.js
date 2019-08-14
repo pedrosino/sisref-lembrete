@@ -17,14 +17,13 @@ browser.runtime.onMessage.addListener(request => {
   // Botão para fechar
   var fechar = document.createElement('button');
   fechar.setAttribute('id','fechar');
-  fechar.setAttribute('class', 'fechar');
+  fechar.setAttribute('class', 'botao fechar');
   fechar.innerHTML = 'Fechar';
 
-  //<a href="btnlink.html" id="btn"></a>
   // Botão para ir para o site do sisref
   var link = document.createElement('a');
   link.setAttribute('id','linkSisref');
-  link.setAttribute('class','botaoLink');
+  link.setAttribute('class','botao botaoLink');
   link.href = "https://sisref.sigepe.gov.br/sisref/entrada.php";
   link.setAttribute('target','_blank');
   link.innerHTML = 'Ir para o SISREF';
