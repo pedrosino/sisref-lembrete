@@ -17,6 +17,11 @@ function saveOptions(e) {
   let backgroundPage = browser.extension.getBackgroundPage();
   backgroundPage.buscarAlarmes();
 
+  /* teste do title/tooltip */
+  var agora = new Date();
+  var texto = "Salvo em " + formataNumero(agora.getHours()) + ":" + formataNumero(agora.getMinutes());
+  browser.browserAction.setTitle({title: texto});
+
   window.close();
 }
 
