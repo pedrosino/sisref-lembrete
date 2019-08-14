@@ -14,6 +14,9 @@ browser.runtime.onMessage.addListener(request => {
   div.setAttribute('class', 'alarme');
   div.textContent = request.greeting;
 
+  var linha = document.createElement('div');
+  div.setAttribute('style','display: table-row');
+
   // Botão para fechar
   var fechar = document.createElement('button');
   fechar.setAttribute('id','fechar');
@@ -21,17 +24,22 @@ browser.runtime.onMessage.addListener(request => {
   fechar.innerHTML = 'Fechar';
 
   // Botão para ir para o site do sisref
+  var botao = document.createElement('button');
+  botao.setAttribute('class','botao botaoLink');
+  botao.innerHTML = 'Ir para o SISREF';
+
   var link = document.createElement('a');
   link.setAttribute('id','linkSisref');
-  link.setAttribute('class','botao botaoLink');
+  /*link.setAttribute('class','botao botaoLink');*/
   link.href = "https://sisref.sigepe.gov.br/sisref/entrada.php";
   link.setAttribute('target','_blank');
-  link.innerHTML = 'Ir para o SISREF';
+  /*link.innerHTML = 'Ir para o SISREF';*/
+  link.appendChild(botao);
 
-
-  div.appendChild(link);
-  div.appendChild(fechar);
-  //document.body.appendChild(div);
+  // Monta o bloco
+  linha.appendChild(link);
+  linha.appendChild(fechar);
+  div.appendChild(linha);
   document.body.prepend(div);
 
   var fecharButton = document.getElementById('fechar');

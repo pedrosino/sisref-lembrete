@@ -1,6 +1,7 @@
 /***************** Caixa principal ********************/
 .alarme {
-  width: 320px;
+  width: 350px;
+  height: 200px;
   background: linear-gradient(to bottom, #005, #008);
   border: 3px solid #002;
   border-radius: 4px;
@@ -9,7 +10,7 @@
   font-size: 12pt;
   color: #ededed;;
   padding: 20px;
-  font-weight: bold;
+  display: table;
 }
 
 .titulo {

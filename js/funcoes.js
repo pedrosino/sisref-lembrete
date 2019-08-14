@@ -13,3 +13,14 @@ function tempoParaMinutos(entrada) {
   valor = horas*60 + minutos;
   return valor;
 }
+
+function formataNumero(entrada) {
+  // Se as horas ou minutos forem menores que 10, o comportamento padrão é mostrar só um dígito
+  // Por exemplo 16:9 ou 7:20
+  // Esta função adiciona um 0 à esquerda quando necessário
+  var saida = String(entrada);
+  if (saida.length < 2) {
+    saida = "0" + saida;
+  }
+  return saida;
+}
