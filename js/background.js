@@ -1,28 +1,53 @@
 "use strict";
 
 function buscarAlarmes() {
-  browser.storage.local.get().then(function(item) {
-    console.log('Buscando...');
-    if (item.inicio_intervalo) {
-      alarme1 = item.inicio_intervalo;
-    } else {
-      alarme1 = "12:00";
-    }
+  if (!isChrome) {
+    browser.storage.local.get().then(function(item) {
+      console.log('Buscando...');
+      if (item.inicio_intervalo) {
+        alarme1 = item.inicio_intervalo;
+      } else {
+        alarme1 = "12:00";
+      }
 
-    if (item.fim_intervalo) {
-      alarme2 = item.fim_intervalo;
-    } else {
-      alarme2 = "13:00";
-    }
+      if (item.fim_intervalo) {
+        alarme2 = item.fim_intervalo;
+      } else {
+        alarme2 = "13:00";
+      }
 
-    if (item.saida) {
-      alarme3 = item.saida;
-    } else {
-      alarme3 = "17:00";
-    }
-    
-    console.log(Math.random() + " Encontrei: " + alarme1 + ", " + alarme2 + ", " + alarme3);
-  }, onError);
+      if (item.saida) {
+        alarme3 = item.saida;
+      } else {
+        alarme3 = "17:00";
+      }
+      
+      console.log(Math.random() + " Encontrei: " + alarme1 + ", " + alarme2 + ", " + alarme3);
+    }, onError);
+  } else {
+    chrome.storage.local.get(null, function(item) {
+      console.log('Buscando Chrome...');
+      if (item.inicio_intervalo) {
+        alarme1 = item.inicio_intervalo;
+      } else {
+        alarme1 = "12:00";
+      }
+
+      if (item.fim_intervalo) {
+        alarme2 = item.fim_intervalo;
+      } else {
+        alarme2 = "13:00";
+      }
+
+      if (item.saida) {
+        alarme3 = item.saida;
+      } else {
+        alarme3 = "17:00";
+      }
+      
+      console.log(Math.random() + " Encontrei: " + alarme1 + ", " + alarme2 + ", " + alarme3);
+    })
+  }
 }
 
 function verificaAlarme() {

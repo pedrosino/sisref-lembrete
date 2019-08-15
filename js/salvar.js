@@ -37,8 +37,11 @@ function restoreOptions() {
     console.log(`Error: ${error}`);
   }
 
-  var getting = browser.storage.local.get();
-  getting.then(setCurrentChoice, onError);
+  if (isChrome) {
+    browser.storage.local.get(null, setCurrentChoice);
+  } else {
+    browser.storage.local.get().then(setCurrentChoice, onError);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
