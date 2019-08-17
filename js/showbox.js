@@ -4,6 +4,8 @@
 const isChrome = typeof browser === "undefined";
 if (isChrome) { var browser = chrome; }
 
+var alarmSound;
+
 browser.runtime.onMessage.addListener(request => {
   console.log("Message from the background script:");
   console.log(request.greeting);
@@ -62,6 +64,27 @@ browser.runtime.onMessage.addListener(request => {
   dialogPolyfill.registerDialog(dialog);
 
   dialog.showModal();
+  console.log('Abriu');
+
+  var endereco = browser.runtime.getURL('sounds/galo.wav');
+  console.log(endereco);
+
+  alarmSound = new Audio(endereco);
+  //a.play();
+  var playPromise = alarmSound.play();
+
+  if (playPromise !== undefined) {
+    playPromise.then(_ => {
+      // Automatic playback started!
+      // Show playing UI.
+    })
+    .catch(error => {
+      // Auto-play was prevented
+      // Show paused UI.
+    });
+  }
+
+  console.log('Alarme!');
 
   function openCheck(dialog) {
     if(dialog.open) {
@@ -75,7 +98,7 @@ browser.runtime.onMessage.addListener(request => {
   fecharButton.addEventListener('click', function() {
     dialog.close('fechou');
     document.body.removeChild(dialog);
-    console.log('Só removeu');
+    alarmSound.pause();
     openCheck(dialog);
   });
 
@@ -83,7 +106,7 @@ browser.runtime.onMessage.addListener(request => {
   linkButton.addEventListener('click', function() {
     dialog.close('fechou');
     document.body.removeChild(dialog);
-    console.log('Fechou e removeu');
+    alarmSound.pause();
     openCheck(dialog);
   });
 

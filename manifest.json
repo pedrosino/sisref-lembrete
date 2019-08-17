@@ -47,6 +47,10 @@
     "default_popup": "popup.html"
   },
 
+  "web_accessible_resources": [
+    "sounds/*.wav"
+  ],
+
   "applications": {
     "gecko": {
       "id": "sisref@example.com"
