@@ -1,7 +1,6 @@
 /***************** Caixa principal ********************/
 .alarme {
   width: 350px;
-  height: 200px;
   background: linear-gradient(to bottom, #005, #008);
   border: 3px solid #002;
   border-radius: 4px;
@@ -22,6 +21,11 @@
   margin: -20px -20px 0 -20px;
 }
 
+.mensagem {
+  padding: 5px 10px;
+  line-height: 50px;
+}
+
 /********************** Botões **********************/
 .botao {
   font-size: 12pt;
@@ -37,6 +41,7 @@
 
 .fechar {
   background-color: #fa0;
+  display: table-cell;
 }
 
 .fechar:hover {
@@ -45,6 +50,7 @@
 
 .botaoLink {
   background-color: #28f;
+  display: table-cell;
 }
 
 .botaoLink:visited {

@@ -21,6 +21,7 @@ browser.runtime.onMessage.addListener(request => {
 
   // Conteúdo principal
   var texto = document.createElement('div');
+  texto.setAttribute('class','mensagem');
   texto.textContent = request.greeting;
   caixa.appendChild(texto);
 
