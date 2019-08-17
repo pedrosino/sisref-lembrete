@@ -80,14 +80,21 @@ function verificaAlarme() {
 }
 
 function sendMessageToTabs(tabs) {
-  for (let tab of tabs) {
-    browser.tabs.sendMessage(
-      tab.id,
-      {greeting: message}
-    ).then(response => {
-      console.log("Message from the content script:");
+   if (isChrome) {
+     browser.tabs.sendMessage(tabs[0].id, {greeting: message}, function(response) {
+      console.log("Mensagem do Chrome:");
       console.log(response.response);
-    }).catch(onError);
+     }); 
+   } else { 
+    for (let tab of tabs) {
+      browser.tabs.sendMessage(
+        tab.id,
+        {greeting: message}
+      ).then(response => {
+        console.log("Message from the content script:");
+        console.log(response.response);
+      }).catch(onError);
+    }
   }
 }
 
