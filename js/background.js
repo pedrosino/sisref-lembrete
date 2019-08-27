@@ -72,10 +72,21 @@ function verificaAlarme() {
   console.log("A3: " + a3 + " => diff " + d3);
 
   if (d1 == 0 || d2 == 0 || d3 == 0) {
-    message = "São " + formataNumero(hora) + ":" + formataNumero(minutos) + "! Já registrou sua frequência?";
+    /*message = "São " + formataNumero(hora) + ":" + formataNumero(minutos) + "! Já registrou sua frequência?";
     browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
       sendMessageToTabs(tabs);
-    });
+    });*/
+
+    var createData = {
+      type: "detached_panel",
+      url: "box.html",
+      width: 412,
+      height: 205,
+      allowScriptsToClose: true
+    };
+    var creating = browser.windows.create(createData);
+
+
   }
 }
 
