@@ -83,7 +83,6 @@ function sendMessageToTabs(tabs) {
    if (isChrome) {
      browser.tabs.sendMessage(tabs[0].id, {greeting: message}, function(response) {
       console.log("Mensagem do Chrome:");
-      console.log(response.response);
      }); 
    } else { 
     for (let tab of tabs) {

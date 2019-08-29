@@ -29,7 +29,7 @@ browser.runtime.onMessage.addListener(request => {
 
   // Div com display 'table-row' para os botões
   var linha = document.createElement('div');
-  linha.setAttribute('style','display: table-row');
+  linha.setAttribute('class','botoes');
 
   // Botão para fechar
   var fechar = document.createElement('button');
