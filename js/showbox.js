@@ -6,7 +6,7 @@ if (isChrome) { var browser = chrome; }
 
 var alarmSound;
 
-browser.runtime.onMessage.addListener(request => {
+browser.runtime.onMessage.addListener(function(request, sender) {
   console.log("Message from the background script:");
   console.log(request.greeting);
 
@@ -54,7 +54,7 @@ browser.runtime.onMessage.addListener(request => {
   linha.appendChild(link);
   linha.appendChild(fechar);
   caixa.appendChild(linha);
-  document.body.prepend(caixa);
+  document.body.appendChild(caixa);
 
   var fecharButton = document.getElementById('fechar');
   var linkButton = document.getElementById('linkSisref');
