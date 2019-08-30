@@ -81,9 +81,7 @@ function verificaAlarme() {
 
 function sendMessageToTabs(tabs) {
    if (isChrome) {
-     browser.tabs.sendMessage(tabs[0].id, {greeting: message}, function(response) {
-      console.log("Mensagem do Chrome:");
-     }); 
+     browser.tabs.sendMessage(tabs[0].id, {greeting: message});
    } else { 
     for (let tab of tabs) {
       browser.tabs.sendMessage(
