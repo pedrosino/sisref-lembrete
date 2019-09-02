@@ -9,9 +9,13 @@ function saveOptions(e) {
   browser.storage.local.set({
     inicio_intervalo: document.querySelector("#inicio").value,
     fim_intervalo: document.querySelector("#fim").value,
-    saida: document.querySelector("#saida").value
+    saida: document.querySelector("#saida").value,
+    ativar_som: document.querySelector("#ativarsom").value,
+    som: document.querySelector("#som").value,
   });
 
+  console.log(document.querySelector("#ativarsom").value);
+  console.log(document.querySelector("#som").value);
   console.log("Salvo!");
 
   let backgroundPage = browser.extension.getBackgroundPage();
@@ -31,6 +35,8 @@ function restoreOptions() {
     document.querySelector("#inicio").value = result.inicio_intervalo || "12:00";
     document.querySelector("#fim").value = result.fim_intervalo || "13:00";
     document.querySelector("#saida").value = result.saida || "17:00";
+    //document.querySelector("#ativarsom").value = result.ativar_som || "checked";
+    //document.querySelector("#som").value = result.som || "galo";
   }
 
   function onError(error) {
@@ -46,3 +52,9 @@ function restoreOptions() {
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
 document.querySelector("form").addEventListener("submit", saveOptions);
+const cancelar = document.getElementById('cancelar');
+cancelar.addEventListener('click', function() {
+  console.log('cancelou');
+  window.open(chrome.runtime.getURL('options.html'));
+  window.close();
+})
