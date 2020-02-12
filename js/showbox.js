@@ -76,11 +76,11 @@ browser.runtime.onMessage.addListener(function(request, sender) {
   if (playPromise !== undefined) {
     playPromise.then(_ => {
       // Automatic playback started!
-      // Show playing UI.
+      console.log('Tocando');
     })
     .catch(error => {
       // Auto-play was prevented
-      // Show paused UI.
+      console.log(error);
     });
   }
 

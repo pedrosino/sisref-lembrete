@@ -7,9 +7,13 @@ if (isChrome) { var browser = chrome; }
 function saveOptions(e) {
   e.preventDefault();
   browser.storage.local.set({
+    // a propriedade .value do checkbox é sempre "on", sendo necessário usar .checked para verificar o estado
+    ativar_som: document.querySelector("#ativarsom").checked,
+    //https://stackoverflow.com/questions/14333797/finding-which-option-is-selected-in-select-without-jquery
+    som: document.querySelector("#som option:checked").value,
     inicio_intervalo: document.querySelector("#inicio").value,
     fim_intervalo: document.querySelector("#fim").value,
-    saida: document.querySelector("#saida").value
+    saida: document.querySelector("#saida").value,
   });
 
   console.log("Salvo!");
@@ -25,24 +29,9 @@ function saveOptions(e) {
   window.close();
 }
 
-function restoreOptions() {
-
-  function setCurrentChoice(result) {
-    document.querySelector("#inicio").value = result.inicio_intervalo || "12:00";
-    document.querySelector("#fim").value = result.fim_intervalo || "13:00";
-    document.querySelector("#saida").value = result.saida || "17:00";
-  }
-
-  function onError(error) {
-    console.log(`Error: ${error}`);
-  }
-
-  if (isChrome) {
-    browser.storage.local.get(null, setCurrentChoice);
-  } else {
-    browser.storage.local.get().then(setCurrentChoice, onError);
-  }
-}
-
-document.addEventListener("DOMContentLoaded", restoreOptions);
 document.querySelector("form").addEventListener("submit", saveOptions);
+const cancelar = document.getElementById('cancelar');
+cancelar.addEventListener('click', function() {
+  console.log('cancelou');
+  window.close();
+});

@@ -23,12 +23,27 @@
         <div class="div-horario">
           <span class="direita">Saída: </span><input id="saida" type="text" class="horario" />
         </div>
+        <div class="botao-som">
+          <span>Ativar som</span>
+          <input type="checkbox" class="ativarsom" id="ativarsom" checked>
+        </div>
+        <div id="som">
+          Escolha o som:
+          <select name="som" id="som" class="select-som">
+            <option value="Buzina">Buzina</option>
+            <option value="Despertador">Despertador</option>
+            <option value="Galo">Galo</option>
+            <option value="Sino">Sino</option>
+            <option value="Sirene">Sirene</option>
+          </select>
+        </div>
         <button class="botao salvar" id="salvar" type="submit">Salvar</button>
-        <button class="botao cancelar" id="cancelar">Cancelar</button>
+        <button class="botao cancelar" id="cancelar" type="button">Cancelar</button>
       </form>
     </div>
 
   <script src="js/funcoes.js"></script>
+  <script src="js/popup.js"></script>
   <script src="js/salvar.js"></script>
   </body>
 </html>

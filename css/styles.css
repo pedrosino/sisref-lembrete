@@ -133,3 +133,19 @@ a {
   background-color: #008;
   color: #ededed;
 }
+
+/******** Botão para ativar/desativar o som ************/
+.botao-som {
+  display: block;
+  text-align: center;
+  position: relative;
+}
+
+.botao-som label {
+  line-height: 12px;
+  padding-bottom: 3px;
+}
+
+.select-som {
+  color: #003;
+}
